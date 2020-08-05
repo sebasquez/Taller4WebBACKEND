@@ -10,6 +10,7 @@ app.options('*', cors());
 
 var persona_routes = require('./routes/personaRoute');
 var libro_routes = require('./routes/libroRoute');
+var usuario_routes = require('./routes/usuarioRoute');
 const mongoose = require('mongoose');
 
 
@@ -33,6 +34,7 @@ app.get('/api/persona/:rut',(req,res)=>{
 
 app.use('/api', persona_routes);
 app.use('/api', libro_routes);
+app.use('/api', usuario_routes);
 
 mongoose.connect('mongodb+srv://admin:admin@universidad-lkndu.gcp.mongodb.net/UBB?retryWrites=true&w=majority', (err, res) =>{
     app.listen(5000,()=>{
