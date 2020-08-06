@@ -12,7 +12,7 @@ function guardar(req, res) {
     User.nombre = req.body.usuario;
     User.mail = req.body.mail;
     User.pass = req.body.pass;
-    const user = await Usuario.findOne({mail: User.mail})
+   
 
    
         User.save((err, usuariorstore) => {
