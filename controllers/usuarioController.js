@@ -9,7 +9,7 @@ function guardar(req, res) {
 
     let User = new Usuario();
     console.log(req)
-    User.nombre = req.body.usuario;
+    User.nombre = req.body.nombre;
     User.mail = req.body.mail;
     User.pass = req.body.pass;
    
