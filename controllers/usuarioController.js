@@ -8,20 +8,25 @@ function guardar(req, res) {
     // Devolvemos una respuesta en JSON
 
     let User = new Usuario();
-
+    console.log(req)
     User.nombre = req.body.usuario;
     User.mail = req.body.mail;
     User.pass = req.body.pass;
+    const user = await Usuario.findOne({mail: User.mail})
 
+    if(user){
+        res.status(500).send('Error. El usuario ya existe')
+    } else {
+        User.save((err, usuariorstore) => {
 
-    User.save((err, usuariorstore) => {
-
-        if (err) res.status(500).send(`Error base de datos> ${err}`)
-
-        res.status(200).send({ "mensaje": "creado correctamente", 'usuario': usuariorstore })
-        
-    })
+            if (err) res.status(500).send(`Error base de datos> ${err}`)
+    
+            res.status(200).send({ mensaje: "creado correctamente", 'usuario': usuariorstore })
+    
+        })
+    }
 }
+
 
 function validar(req, res) {
 
